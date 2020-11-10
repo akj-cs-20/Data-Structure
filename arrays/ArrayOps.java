@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class ArrayOps {
     static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) {
-        int[] arrays  = takeInput();
+        // int[] arrays  = takeInput();
+        int[] arrays = { 1, 2, 2, 2, 2, 3, 3, 3, 9, 11 };
         displayElementsArray(arrays);
 
         int maxElement = maxArray(arrays);
@@ -21,7 +22,11 @@ public class ArrayOps {
         System.out.println("value found = " + searchValue);
         
         int resultBinarySearch = binarySearch(31, arrays);
-        System.out.println("Value found at index : "+resultBinarySearch);
+        System.out.println("Value found at index : " + resultBinarySearch);
+        
+        int upperBoud = upperBound(arrays, 3);
+        int lowerBoud = lowerBound(arrays, 2);
+        System.out.println("Lowerbound : "+lowerBoud+" upperbound : "+upperBoud);
     }
     
     // taking input from user and store into an arrays 
@@ -111,5 +116,37 @@ public class ArrayOps {
         return -1;
     }
     
+    // upper bound (Binary Search)
+    public static int lowerBound(int[] arr, int data) {
+        int ans = -1, low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] == data) {
+                ans = mid;
+                high = mid - 1;
+            } else if (data < arr[mid]) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
     
+    // upper bound (Binary Search)
+    public static int upperBound(int[] arr, int data) {
+        int ans = -1, low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high)/2;
+            if (arr[mid] == data) {
+                ans = mid;
+                low = mid + 1;
+            } else if ( data < arr[mid] ) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
 }
