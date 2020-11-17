@@ -6,16 +6,19 @@ public class PrimeNonPrime {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        boolean res = primeNonprime(n);
-        System.out.println(res);
+		boolean flag = true;
+		
+		for (int i = 2; i < n; i++) {
+			if (n % i == 0) {
+				flag = false;
+				break;
+			}
+		}
+		if(flag == true) {
+			System.out.println("Prime");
+		}else{
+			System.out.println("Not Prime");
+		}
     }
     
-    public static boolean primeNonprime(int num) {
-        for (int i = 2; i < num; i++) {
-            if (num % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
